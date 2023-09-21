@@ -12,7 +12,7 @@ void open_file(char *file_name)
 
 	if (file_name == NULL || fd == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %d\n", *file_name);
+		fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		free_nodes();
 		exit(EXIT_FAILURE);
 	}
