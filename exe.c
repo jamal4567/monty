@@ -33,7 +33,11 @@ void find_func(char *opcode, char *value, int ln, int format)
 		}
 	}
 	if (flag == 1)
-		fprintf(stderr, "L%d: unknown instruction %s\n", ln, value);
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", ln, opcode);
+		free_nodes();
+		exit(EXIT_FAILURE);
+	}
 }
 
 
@@ -65,7 +69,7 @@ void call_fun(op_func func, char *op, char *val, int ln, int format)
 		for (i = 0; val[i] != '\0'; i++)
 		{
 			if (isdigit(val[i]) == 0)
-				err(5, ln);
+				fprintf(stderr, "L%d: usage: push integer\n", ln);
 		}
 		node = create_node(atoi(val) * flag);
 		if (format == 0)
