@@ -43,23 +43,24 @@ extern stack_t *head;
 typedef void (*op_func)(stack_t **, unsigned int);
 
 /*file operations*/
-void open_file(char *file_name);
-int parse_line(char *buffer, int line_number, int format);
-void read_file(FILE *);
+void _open(char *file);
+int _parse(char *buff, int nline, int fmt);
+void _read(FILE *file);
 int len_chars(FILE *);
-void find_func(char *, char *, int, int);
+void get_opcode(char *opc, char *argv, int line, int fmt);
 
 /*Stack operations*/
-stack_t *create_node(int n);
-void free_nodes(void);
-void print_stack(stack_t **, unsigned int);
-void add_to_stack(stack_t **, unsigned int);
-void add_to_queue(stack_t **, unsigned int);
+stack_t *_putnd(int nb);
+void free_me(void);
+void _push(stack_t **node, __attribute__((unused))unsigned int line);
+void _pall(stack_t **stack, unsigned int line);
+void _pop(stack_t **stack, unsigned int line);
+void _pint(stack_t **stack, unsigned int line);
 
-void call_fun(op_func, char *, char *, int, int);
+void put_in_queue(stack_t **node, __attribute__((unused))unsigned int line);
 
-void print_top(stack_t **, unsigned int);
-void pop_top(stack_t **, unsigned int);
+void opcode_call(op_func ptr, char *s, char *vars, int line, int fmt);
+
 void nop(stack_t **, unsigned int);
 void swap_nodes(stack_t **, unsigned int);
 
