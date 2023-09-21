@@ -13,6 +13,7 @@ void open_file(char *file_name)
 	if (file_name == NULL || fd == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %d\n", *file_name);
+		free_nodes();
 		exit(EXIT_FAILURE);
 	}
 
@@ -59,6 +60,7 @@ int parse_line(char *buffer, int line_number, int format)
 	if (buffer == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_nodes();
 		exit(EXIT_FAILURE);
 	}
 
