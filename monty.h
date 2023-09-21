@@ -56,13 +56,12 @@ void _push(stack_t **node, __attribute__((unused))unsigned int line);
 void _pall(stack_t **stack, unsigned int line);
 void _pop(stack_t **stack, unsigned int line);
 void _pint(stack_t **stack, unsigned int line);
-
+void _swap(stack_t **stack, unsigned int line);
 void put_in_queue(stack_t **node, __attribute__((unused))unsigned int line);
 
 void opcode_call(op_func ptr, char *s, char *vars, int line, int fmt);
 
 void nop(stack_t **, unsigned int);
-void swap_nodes(stack_t **, unsigned int);
 
 /*Math operations with nodes*/
 void add_nodes(stack_t **, unsigned int);
