@@ -1,45 +1,45 @@
 #include "monty.h"
-
-g_vars_t para;
-
+bus_t bus = {NULL, NULL, NULL, 0};
 /**
- * main - Start LIFO, FILO program
- * @ac: Number of arguments
- * @av: Pointer containing arguments
- * Return: 0 Success, 1 Failed
- */
-int main(int ac, char **av)
+* main - monty code interpreter
+* @argc: number of arguments
+* @argv: monty file location
+* Return: 0 on success
+*/
+int main(int argc, char *argv[])
 {
-    void (*f)(stack_t **stack, unsigned int line_number);
-	FILE *fd;
-	size_t size = 256;
-	ssize_t l = 0;
-	char *lines[2] = {NULL, NULL};
+	char *content;
+	FILE *file;
+	size_t size = 0;
+	ssize_t read_line = 1;
+	stack_t *stack = NULL;
+	unsigned int counter = 0;
 
-	fd = check_input(ac, av);
-	start_para(fd);
-	l = getline(&para.buff, &size, fd);
-	while (l != -1)
+	if (argc != 2)
 	{
-		lines[0] = strtok(para.buff, " \t\n");
-		if (lines[0] && lines[0][0] != '#')
-		{
-			f = get_opcodes(lines[0]);
-			if (!f)
-			{
-				fprintf(stderr, "L%u: ", para.nline);
-				fprintf(stderr, "unknown instruction %s\n", lines[0]);
-				free_nodes();
-				exit(EXIT_FAILURE);
-			}
-			para.argument = strtok(NULL, " \t\n");
-			f(&para.tmp, para.nline);
-		}
-		l = getline(&para.buff, &size, fd);
-		para.nline++;
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
-
-	free_nodes();
-
-	return (0);
+	file = fopen(argv[1], "r");
+	bus.file = file;
+	if (!file)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+	while (read_line > 0)
+	{
+		content = NULL;
+		read_line = getline(&content, &size, file);
+		bus.content = content;
+		counter++;
+		if (read_line > 0)
+		{
+			execute(content, &stack, counter, file);
+		}
+		free(content);
+	}
+	free_stack(stack);
+	fclose(file);
+return (0);
 }
