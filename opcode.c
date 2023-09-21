@@ -18,7 +18,7 @@ void get_opcode(char *opc, char *argv, int line, int fmt)
 		{"pop", _pop},
 		{"swap", _swap},
 		{"add", _add},
-		{"nope", _nope},
+		{"nop", _nope},
 		{NULL, NULL}
 	};
 
