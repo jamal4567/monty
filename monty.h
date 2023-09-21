@@ -42,43 +42,24 @@ typedef struct instruction_s
 extern stack_t *head;
 typedef void (*op_func)(stack_t **, unsigned int);
 
-/*file operations*/
 void _open(char *file);
 int _parse(char *buff, int nline, int fmt);
 void _read(FILE *file);
-int len_chars(FILE *);
+
 void get_opcode(char *opc, char *argv, int line, int fmt);
 
-/*Stack operations*/
 stack_t *_putnd(int nb);
+
 void free_me(void);
+
 void _push(stack_t **node, __attribute__((unused))unsigned int line);
 void _pall(stack_t **stack, unsigned int line);
 void _pop(stack_t **stack, unsigned int line);
 void _pint(stack_t **stack, unsigned int line);
 void _swap(stack_t **stack, unsigned int line);
+void _add(stack_t **stack, unsigned int line);
+void _nope(stack_t **stack, unsigned int line);
+
 void put_in_queue(stack_t **node, __attribute__((unused))unsigned int line);
-
 void opcode_call(op_func ptr, char *s, char *vars, int line, int fmt);
-
-void nop(stack_t **, unsigned int);
-
-/*Math operations with nodes*/
-void add_nodes(stack_t **, unsigned int);
-void sub_nodes(stack_t **, unsigned int);
-void div_nodes(stack_t **, unsigned int);
-void mul_nodes(stack_t **, unsigned int);
-void mod_nodes(stack_t **, unsigned int);
-
-/*String operations*/
-void print_char(stack_t **, unsigned int);
-void print_str(stack_t **, unsigned int);
-void rotl(stack_t **, unsigned int);
-
-/*Error hanlding*/
-void err(int error_code, ...);
-void more_err(int error_code, ...);
-void string_err(int error_code, ...);
-void rotr(stack_t **, unsigned int);
-
 #endif
