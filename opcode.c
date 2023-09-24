@@ -22,6 +22,7 @@ void get_opcode(char *opc, char *argv, int line, int fmt)
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
