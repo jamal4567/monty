@@ -60,6 +60,7 @@ void _swap(stack_t **stack, unsigned int line);
 void _add(stack_t **stack, unsigned int line);
 void _nope(stack_t **stack, unsigned int line);
 void _sub(stack_t **stack, unsigned int line);
+void _div(stack_t **stack, unsigned int line);
 
 
 void put_in_queue(stack_t **node, __attribute__((unused))unsigned int line);
